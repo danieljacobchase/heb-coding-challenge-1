@@ -1,28 +1,43 @@
 package com.inventory;
 
+import com.inventory.dao.GroceryDaoImpl;
+import com.inventory.dao.GroceryDao;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.apache.commons.dbcp.BasicDataSource;
-import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import com.inventory.dao.GroceryDao;
+import org.springframework.beans.factory.annotation.Value;
 
 @Configuration
 public class SpringBootConfiguration {
 
+    @Value("${db.driver}")
+    private String driver;
+
+    @Value("${db.url}")
+    private String url;
+
+    @Value("${db.port}")
+    private String port;
+
+    @Value("${db.username}")
+    private String username;
+
+    @Value("${db.password}")
+    private String password;
+
     @Bean
     public BasicDataSource dataSource() {
         BasicDataSource bds = new BasicDataSource();
-        //bds.setDriverClassName("org.hsqldb.jdbcDriver");
-        bds.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        bds.setUrl("jdbc:mysql://danthroposrds.czlsymlnerqj.us-east-2.rds.amazonaws.com:3306");
-        bds.setUsername("danthropos");
-        bds.setPassword("8tYXahmvN1oJ");
+        bds.setDriverClassName(this.driver);
+        bds.setUrl(this.url + ":" + this.port);
+        bds.setUsername(this.username);
+        bds.setPassword(this.password);
         return bds;
     }
 
     @Bean
     public GroceryDao groceryDao() {
-        GroceryDao gd = new GroceryDao();
+        GroceryDaoImpl gd = new GroceryDaoImpl();
         gd.setDataSource(this.dataSource());
         return gd;
     }

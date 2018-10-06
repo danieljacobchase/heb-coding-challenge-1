@@ -1,20 +1,17 @@
 package com.inventory.agent;
 
-import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
-import com.inventory.dao.GroceryDao;
 import com.inventory.model.Grocery;
 import java.util.List;
 
-@Component
-public class SearchAgent {
+public interface SearchAgent {
 
-    @Resource
-    GroceryDao groceryDao;
-
-    public List<Grocery> getAllGroceries(){
-        return this.groceryDao.getAll();
-    }
-
+    List<Grocery> searchById(String id);
+    List<Grocery> searchByDescription(String desc);
+    List<Grocery> searchByShelfLife(String shelfLife);
+    List<Grocery> searchByDepartment(String dept);
+    List<Grocery> searchByPrice(String price);
+    List<Grocery> searchByUnit(String unit);
+    List<Grocery> searchByCost(String price);
+    List<Grocery> searchCombinedMultiple(String searchStr);
+    List<Grocery> searchCombined(String searchStr);
 }

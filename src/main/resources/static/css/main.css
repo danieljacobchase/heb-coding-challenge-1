@@ -5,3 +5,8 @@ h1{
 h2{
 	color:#FF0000;
 }
+
+td{
+    text-align: center;
+    vertical-align: middle;
+}

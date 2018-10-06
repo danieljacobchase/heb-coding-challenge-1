@@ -10,12 +10,9 @@
 
 <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
 
-<!-- 
-	<spring:url value="/css/main.css" var="springCss" />
-	<link href="${springCss}" rel="stylesheet" />
-	 -->
 <c:url value="/css/main.css" var="jstlCss" />
 <link href="${jstlCss}" rel="stylesheet" />
+
 
 </head>
 <body>
@@ -23,44 +20,53 @@
 	<div class="container">
 
         <form:form width="100%" action="search" method="post" modelAttribute="searchRequest">
-            <table border="0">
+            <table border="0" width="100%">
                 <tr>
-                    <td colspan="2" align="center"><h2>HEB Inventory Search</h2></td>
+                    <td colspan="2" cellpadding="10" align="center">
+                        <br>
+                        <a href="/"><img src="/images/heb.jpg" height="68" width="206" /></a>
+                        <h3>Inventory Quick Search</h3>
+                        <br>
+                    </td>
                 </tr>
                 <tr>
-                    <td><form:input path="searchText" width="100%" size="100" /></td>
-                    <td colspan="2" align="center"><input type="submit" value="Search" /></td>
+                    <td width="90%"><form:input path="searchText" style="display:table-cell; width:100%" /></td>
+                    <td width="10%"><input type="submit" value="Search" style="display:table-cell; width:100%" /></td>
                 </tr>
             </table>
         </form:form>
 
         <br>
 
-        <table width="100%" cellspacing="4" cellpadding="4">
+        <c:if test="${grocList.size()<=0}">
+           No results.
+        </c:if>
+
+        <table border="0" width="100%" cellspacing="4" cellpadding="4">
             <c:if test="${grocList.size()>0}">
-                <tr>
-                    <td>ID</td>
-                    <td>Description</td>
-                    <td>Last Sold</td>
-                    <td>Shelf Life</td>
-                    <td>Department</td>
-                    <td>Price</td>
-                    <td>Unit</td>
-                    <td>xFor</td>
-                    <td>Cost</td>
+                <tr style="font-weight: bold">
+                    <td width="10%" style="text-align: center; vertical-align: middle;">ID</td>
+                    <td width="20%" style="text-align: center; vertical-align: middle;">Description</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">Last Sold</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">Shelf Life</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">Department</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">Price</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">Unit</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">xFor</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">Cost</td>
                 </tr>
             </c:if>
             <c:forEach var = "listValue" items = "${grocList}">
                 <tr>
-                    <td><c:out value="${listValue.getId()}"/></td>
-                    <td><c:out value="${listValue.getDescription()}"/></td>
-                    <td><c:out value="${listValue.getLastSold()}"/></td>
-                    <td><c:out value="${listValue.getShelfLife()}"/></td>
-                    <td><c:out value="${listValue.getDepartment()}"/></td>
-                    <td><c:out value="${listValue.getPrice()}"/></td>
-                    <td><c:out value="${listValue.getUnit()}"/></td>
-                    <td><c:out value="${listValue.getXFor()}"/></td>
-                    <td><c:out value="${listValue.getCost()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getId()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getDescription()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getLastSoldDayOnly()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getShelfLife()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getDepartment()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getPriceFormatted()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getUnit()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getXFor()}"/></td>
+                    <td style="text-align: center; vertical-align: middle;"><c:out value="${listValue.getCostFormatted()}"/></td>
                 </tr>
             </c:forEach>
         </table>

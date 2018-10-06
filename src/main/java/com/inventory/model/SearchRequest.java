@@ -7,5 +7,4 @@ public class SearchRequest {
     private String searchText;
 
     public String getSearchText(){return this.searchText;}
-    public void setSearchText(String text){this.searchText = text;}
 }
