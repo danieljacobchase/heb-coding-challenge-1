@@ -46,7 +46,7 @@
             <c:if test="${grocList.size()>0}">
                 <tr style="font-weight: bold">
                     <td width="10%" style="text-align: center; vertical-align: middle;">ID</td>
-                    <td width="20%" style="text-align: center; vertical-align: middle;">Description</td>
+                    <td width="10%" style="text-align: center; vertical-align: middle;">Description</td>
                     <td width="10%" style="text-align: center; vertical-align: middle;">Last Sold</td>
                     <td width="10%" style="text-align: center; vertical-align: middle;">Shelf Life</td>
                     <td width="10%" style="text-align: center; vertical-align: middle;">Department</td>
