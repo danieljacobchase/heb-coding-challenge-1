@@ -1,7 +1,6 @@
 package com.heb.inventory.agent;
 
 import com.heb.inventory.model.Grocery;
-import com.heb.inventory.model.Grocery;
 import java.util.List;
 
 public interface SearchAgent {
@@ -15,4 +14,6 @@ public interface SearchAgent {
     List<Grocery> searchByCost(String price);
     List<Grocery> searchCombinedMultiple(String searchStr);
     List<Grocery> searchCombined(String searchStr);
+    List<Grocery> searchAll(String searchStr);
+    List<Grocery> searchAllMultiple(String searchStr);
 }

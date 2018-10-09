@@ -9,4 +9,17 @@ h2{
 td{
     text-align: center;
     vertical-align: middle;
+    opacity: 0.97;
+}
+
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  flex: 1;
 }

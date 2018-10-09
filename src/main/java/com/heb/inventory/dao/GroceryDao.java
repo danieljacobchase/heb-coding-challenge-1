@@ -12,4 +12,5 @@ public interface GroceryDao {
     List<Grocery> searchByCost(Float cost);
     List<Grocery> searchByShelfLife(String shelfLife);
     List<Grocery> searchByUnit(String unit);
+    List<Grocery> searchAll(String str);
 }
